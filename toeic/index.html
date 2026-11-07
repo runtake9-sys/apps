@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Distinction TOEIC</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-512.png">
+<style>
+html,body{margin:0;height:100%;background:#000000;color:#E8F4FA;font-family:system-ui,-apple-system,'Hiragino Sans','Yu Gothic UI',sans-serif}
+main{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px 16px;text-align:center}
+img{width:120px;height:120px;border-radius:28px;box-shadow:0 10px 30px rgba(0,0,0,.6)}
+h1{margin:0;font-size:22px;letter-spacing:.06em}
+p{margin:0;font-size:14px;line-height:1.7;color:#9DB6C4}
+button,a.btn{min-height:48px;padding:0 26px;border-radius:24px;border:1px solid #8FE6FF;background:rgba(143,230,255,.12);color:#fff;font-size:15px;text-decoration:none;display:inline-flex;align-items:center;cursor:pointer}
+a.sub{color:#8FE6FF;font-size:13px}
+[hidden]{display:none!important}
+</style></head><body>
+<main id="m" hidden>
+  <img src="icon-512.png" alt="">
+  <h1>Distinction TOEIC</h1>
+  <button id="ins" type="button" hidden>アプリとしてインストール</button>
+  <p id="how">Chrome の右上 ⋮ →「アプリをインストール」<br>（または「ホーム画面に追加」→「インストール」）</p>
+  <a class="sub" href="https://claude.ai/artifact/Vc5jki7uKCwbpp5B6pAJMV">インストールせずに開く</a>
+</main>
+<script>
+const U='https://claude.ai/artifact/Vc5jki7uKCwbpp5B6pAJMV';
+if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+const app=matchMedia('(display-mode: standalone)').matches||new URLSearchParams(location.search).has('app');
+if(app){ location.replace(U); }
+else{
+  document.getElementById('m').hidden=false;
+  let ev=null; const b=document.getElementById('ins');
+  addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); ev=e; b.hidden=false; });
+  b.addEventListener('click',async()=>{ if(!ev) return; ev.prompt(); await ev.userChoice; ev=null; b.hidden=true; });
+  addEventListener('appinstalled',()=>{ document.getElementById('how').textContent='インストールしました。ホーム画面のアイコンから開いてね。'; b.hidden=true; });
+}
+</script>
+</body></html>

@@ -1,0 +1,29 @@
+{
+ "name": "KAIROS",
+ "short_name": "KAIROS",
+ "start_url": "./?app=1",
+ "scope": "./",
+ "display": "standalone",
+ "background_color": "#02070D",
+ "theme_color": "#02070D",
+ "icons": [
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "icon-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}
